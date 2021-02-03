@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocketServer Sergio</title>
+</head>
+<body>
+    <h1>Bienvenido</h1>
+
+    <script src="socket.io/socket.io.js"> </script>
+    <script>
+        var socket = io();
+        socket.on('connect', function(){
+            console.log('Conectado al servidor');
+        });
+
+        socket.on('disconnect', function(){
+            console.log('Perdiendo conexion al servidor');
+        });
+
+        socket.on('mensaje', function(payload){
+            console.log("escuchando", payload);
+        });
+
+        socket.on('nueva-emision', function(payload){
+            console.log("escuchando", payload);
+        });
+
+        socket.on('emision-bandas', function(payload){
+            console.clear();
+            console.table(payload);
+        });
+
+        socket.emit('mensaje', {mensaje: "hola"});
+
+    </script>
+</body>
+</html>
